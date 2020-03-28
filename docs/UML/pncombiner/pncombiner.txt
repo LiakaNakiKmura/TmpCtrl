@@ -1,0 +1,47 @@
+@startuml
+
+abstract class Transaction{
+    +excute()
+}
+
+class PNCombiner
+PNCombiner -ri-|> Transaction
+
+PNCombiner --> PNcalc
+PNCombiner --> PNDataWriter
+PNCombiner --> PNDataReader
+PNCombiner --> CommonParameter
+
+class PNDataWriter{
+}
+class PNDataReader{
+}
+class PNcalc{
+}
+class CommonParameter
+
+abstract class IndivDataBase{
+    +index_freq
+    +index_val
+    +get_data(name)
+    +set_data(name, data)
+    +get_names()
+}
+
+PNDataWriter --up|> Transaction
+PNDataReader --up|> Transaction
+PNcalc --up|> Transaction
+
+class PNDataBase{
+    <<singleton>>
+}
+PNDataWriter --do> PNDataBase
+PNDataReader --do> PNDataBase
+PNcalc --do> IndivDataBase
+IndivDataBase --ri> PNDataBase
+
+NoiseDataBase -up-|> IndivDataBase
+TransferfuncDataBase -up-|> IndivDataBase
+CloseLoopDataBase -up-|> IndivDataBase
+
+@enduml
