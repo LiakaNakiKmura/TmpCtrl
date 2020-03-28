@@ -10,3 +10,4 @@ If this module is not __main__, do nothing
 import unittest 
 test_suite = unittest.TestLoader().discover('tests', pattern='test_*.py')
 unittest.TextTestRunner().run(test_suite)
+
