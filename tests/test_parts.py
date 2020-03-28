@@ -10,7 +10,8 @@ import unittest
 
 # Original module  
 from context import src # path setting
-from test_interface import TestForMethodExist
+#from test_interface import TestForMethodExist
+from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
 
 # target

@@ -5,6 +5,8 @@ Utilitys for unit testing
 
 @author: sasamura
 """
+# Original module  
+from context import src # path setting
 
 import types
 
@@ -34,6 +36,39 @@ def cls_startstop_msg(class_):
                 new_method = startstop_msg(attr, class_.__name__+'.')
                 setattr(class_, method, new_method)
     return class_w
+
+
+class TestForMethodExist():
+    '''
+    Check that class has specified method for especially abstract class.
+    _class_method_pairs is set as ((class1, mrthod1),(class2, method2)...)
+    _class_attr_pairs is set as ((class1, attribute1),(class2, attribute2)...)
+    '''
+
+    _class_method_pairs =(())
+    _class_attr_pairs = (())
+
+    def test_class_method_pairs(self):
+        judge_func =lambda cl,m: self.assertTrue(callable(getattr(cl,m)))
+        self.check_sth_in_cls(self._class_method_pairs, judge_func)
+
+    def test_class_attr_pairs(self):
+        judge_func =lambda cl,a: self.assertTrue(hasattr(cl,a))
+        self.check_sth_in_cls(self._class_attr_pairs, judge_func)
+
+    def check_sth_in_cls(self, cls_sth_pairs, judge_func):
+        '''
+        Both of expression can be adapted for cls_sth_pairs:
+            1.((class1, (sth1, sth2)),(class2, (sth1,sth2)))
+            2.((class1, sth1),(class2, sth2))
+        'judge_func' means judgment function
+        '''
+        for cl, sth in cls_sth_pairs:
+            if isinstance(sth, list) or isinstance(sth, tuple):
+                for s in sth:
+                    judge_func(cl, s)
+            else:
+                judge_func(cl, sth)
 
 
 if __name__ == '__main__':
