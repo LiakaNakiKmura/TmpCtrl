@@ -14,11 +14,11 @@ import abc
 
 class Parts(metaclass = abc.ABCMeta):
     @abc.abstractmethod
-    def get_data(self):
+    def get_value(self):
         pass
 
     @abc.abstractmethod
-    def set_data(self):
+    def set_parameter(self):
         pass
 
     @abc.abstractmethod

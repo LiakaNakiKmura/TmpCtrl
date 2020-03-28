@@ -18,9 +18,14 @@ from testing_utility.unittest_util import cls_startstop_msg as add_msg
 from src.interface.intfc_com import (Parts)
 
 @add_msg
-class TestCombinePN(TestForMethodExist, unittest.TestCase):
-    _class_method_pairs=((Parts,('get_data','set_data','get_parameter_name')),
+class TestPartsInterFace(TestForMethodExist, unittest.TestCase):
+    _class_method_pairs=((Parts,('get_value','set_parameter',
+                                 'get_parameter_name')),
                          )
+
+@add_msg
+class TestNTC(unittest.TestCase):
+    pass
 
 if __name__=='__main__':
     unittest.main() 
