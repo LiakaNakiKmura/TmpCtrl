@@ -17,7 +17,7 @@ from testing_utility.unittest_util import cls_startstop_msg as add_msg
 
 # target
 from src.interface.intfc_com import (Parts)
-from src.parts.parts_func import (NTC)
+from src.parts.parts_func import (NTC, PTC)
 
 @add_msg
 class TestPartsInterFace(TestForMethodExist, unittest.TestCase):
@@ -51,6 +51,10 @@ class ResistTestMethods():
 
 @add_msg
 class TestNTC(ResistTestMethods, unittest.TestCase):
+    """
+    Negative temperature coefficient thermistor.
+    R(T) = R0*exp(B(1/T-1/T0))
+    """
     _cls = NTC
     _parameter_names = ('temeperature_degC',)
     _paradict_val_pairs = (({'temeperature_degC':-30},216729.001660428 ),
@@ -58,7 +62,13 @@ class TestNTC(ResistTestMethods, unittest.TestCase):
                            ({'temeperature_degC':80},1203.301326499)
                            )
     _initial_set = {'Resist_at_T2':10000,'T2':25, 'B_const':4050}
-    
+
+@add_msg
+class TestPTC(ResistTestMethods, unittest.TestCase):
+    _cls = PTC
+    _parameter_names = ('temeperature_degC',)
+    _paradict_val_pairs = () 
+    # https://jp.mathworks.com/help/physmod/sps/ref/ptcthermistor.html
 
 if __name__=='__main__':
     unittest.main() 
