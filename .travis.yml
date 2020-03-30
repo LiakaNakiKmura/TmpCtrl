@@ -6,4 +6,4 @@ install:
   - pip install pandas
   - pip install scipy
 script: 
-- python -m unittest discover -s tests
+- python -m unittest discover -s tests７
