@@ -16,8 +16,9 @@ from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
 
 # target
+import sys
 from src.interface.intfc_com import (Parts)
-print(locals())
+print(sys.path)
 from src.parts.parts_func import (NTC, PTC)
 
 @add_msg
