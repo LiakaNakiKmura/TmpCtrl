@@ -6,7 +6,7 @@ import os
 
 # call parent folder.
 
-depth_of_parents = 1
+depth_of_parents = 2
 '''
 This is the parameter of depth of adding path of parents foleder. If this is 
 set as 2, add paths of parent and parent's parent folder path.
@@ -16,6 +16,8 @@ set as 2, add paths of parent and parent's parent folder path.
 
 module_path = Path(os.path.abspath(__file__))
 for i in range(depth_of_parents):
+    print(i)
+    print(module_path.parents[i])
     if not(str(module_path.parents[i]) in sys.path):
         sys.path.insert(0, str(module_path.parents[i]))
 
