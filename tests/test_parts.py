@@ -10,7 +10,8 @@ import unittest
 from numpy.testing import assert_almost_equal
 
 # Original module  
-from context import src as SRC # path setting
+from context import src  # path setting
+print(src)
 #from test_interface import TestForMethodExist
 from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
@@ -18,9 +19,8 @@ from testing_utility.unittest_util import cls_startstop_msg as add_msg
 # target
 import sys
 print(sys.path)
-from SRC.interface.intfc_com import (Parts)
-print(SRC)
-from SRC.parts.parts_func import (NTC, PTC)
+from src.interface.intfc_com import (Parts)
+from src.parts.parts_func import (NTC, PTC)
 
 @add_msg
 class TestPartsInterFace(TestForMethodExist, unittest.TestCase):
