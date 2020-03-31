@@ -20,8 +20,8 @@ from testing_utility.unittest_util import cls_startstop_msg as add_msg
 import sys
 print(sys.path)
 from src.interface.intfc_com import (Parts)
-import src.parts.parts_func.NTC as NTC
-from src.parts.parts_func import (PTC)
+import src.parts
+from src.parts.parts_func import (NTC, PTC)
 
 @add_msg
 class TestPartsInterFace(TestForMethodExist, unittest.TestCase):
