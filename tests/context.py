@@ -22,6 +22,7 @@ for i in range(depth_of_parents):
         sys.path.insert(0, str(module_path.parents[i]))
 
 import src
+print(os.path)
 
 '''
 This is needed when test module import files in the "src" folder placed parent
