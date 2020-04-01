@@ -57,11 +57,11 @@ class TestNTC(ResistTestMethods, unittest.TestCase):
     """
     _cls = NTC
     _parameter_names = ('temeperature_degC',)
+    _initial_set = {'R0':10000,'T0':25, 'B':4050}
     _paradict_val_pairs = (({'temeperature_degC':-30},216729.001660428 ),
                            ({'temeperature_degC':25},10000 ),
                            ({'temeperature_degC':80},1203.301326499)
                            )
-    _initial_set = {'Resist_at_T2':10000,'T2':25, 'B_const':4050}
 
 @add_msg
 class TestPTC(ResistTestMethods, unittest.TestCase):

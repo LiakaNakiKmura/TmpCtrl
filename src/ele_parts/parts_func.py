@@ -18,16 +18,20 @@ a=0
 class NTC(Parts): 
     '''
     Negative temperature coefficient thermistor.
+    R0[Ohm]: Resistance at T0[degC]
+    B[K]: B const of thermistor.
+    T0[degC]: reference temperature for R0. Usually 25 degC
+    
     Resistance has the following relation.
        R(T) = R0*exp(B(1/T-1/T0))
     R0, B, T0 is needed to be set.
     Return resistance at T.
     '''
     _parameter_names = ('temeperature_degC',)
-    def __init__(self, Resist_at_T2, B_const,  T2 = 25):
-        self._r0 = Resist_at_T2
-        self._b = B_const
-        self._t0_degC = T2 # 25 degreeC is the reference temperature usually.
+    def __init__(self, R0, B,  T0 = 25):
+        self._r0 = R0
+        self._b = B
+        self._t0_degC = T0 # 25 degreeC is the reference temperature usually.
         self._temp_degC =None # target temperature of thermistor. 
     
     def get_value(self):
