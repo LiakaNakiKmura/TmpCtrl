@@ -11,17 +11,13 @@ from numpy.testing import assert_almost_equal
 
 # Original module  
 from context import src  # path setting
-print(src)
 #from test_interface import TestForMethodExist
 from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
 
 # target
-import sys
-print(sys.path)
 from src.interface.intfc_com import (Parts)
-import src.ele_parts
-#from src.parts.parts_func import (NTC, PTC)
+from src.ele_parts.parts_func import (NTC, PTC)
 
 @add_msg
 class TestPartsInterFace(TestForMethodExist, unittest.TestCase):
@@ -52,7 +48,7 @@ class ResistTestMethods():
             self.parts.set_parameter(**paradict)
             assert_almost_equal(val, self.parts.get_value())
             
-'''
+
 @add_msg
 class TestNTC(ResistTestMethods, unittest.TestCase):
     """
@@ -73,7 +69,7 @@ class TestPTC(ResistTestMethods, unittest.TestCase):
     _parameter_names = ('temeperature_degC',)
     _paradict_val_pairs = () 
     # https://jp.mathworks.com/help/physmod/sps/ref/ptcthermistor.html
-'''
+
 
 if __name__=='__main__':
     unittest.main() 
