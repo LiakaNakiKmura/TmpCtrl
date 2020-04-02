@@ -9,10 +9,29 @@ Created on Thu Apr  2 23:58:03 2020
 import abc
 
 # 3rd party's module
+import numpy as np
 
 # Original module  
 from context import src  # path setting
-from src.interface.intfc_com import (ResistParameter)
+from src.interface.intfc_com import (ResistTempFunc, ResistParameter)
+
+class NTCFuncClass(ResistTempFunc):
+    def __init__(self, Parameter):
+        par = Parameter()
+        self._r0 = par.R0
+        self._b = par.B
+        self._t0_degC = par.T0 
+        
+    def get_func(self):
+        T0 = self._t0_degC + 273 # FIXME: Make absolute temperature class.
+        R0 = self._r0
+        B = self._b
+        def func(t1_degC):
+            T1 = t1_degC + 273
+            return R0*np.exp(B*(1/T1- 1/T0))
+        return func
+    
+    
 
 
 class NTC_Parameter(ResistParameter): 
@@ -37,3 +56,9 @@ class NTC_Sample1(NTC_Parameter):
     _T0 = 25
     _R0 = 10000
     _B = 4050
+
+class NTC_Sample2(NTC_Parameter):
+    _name = "NTC Sample2"
+    _T0 = 25
+    _R0 = 20000
+    _B = 5000

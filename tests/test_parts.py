@@ -25,11 +25,6 @@ class TestPartsInterFace(TestForMethodExist, unittest.TestCase):
                                  'get_parameter_name')),
                          )
     
-class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
-    _class_method_pairs=((ResistTempFunc,('get_func')),
-                         )
-    _class_attr_pairs = ((ResistParameter,('name')),
-                         )
 
 
 class ResistTestMethods():
@@ -54,16 +49,43 @@ class ResistTestMethods():
             self.parts.set_parameter(**paradict)
             assert_almost_equal(val, self.parts.get_value())
  
+class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
+    _class_method_pairs=((ResistTempFunc,('get_func')),
+                         )
+    _class_attr_pairs = ((ResistParameter,('name')),
+                         )
 
 class ResistTempFuncTestMethods():
+    '''
+    Test for Maker of function for R(T)
+    ResistTempFunc is the Maker.
+    ResistParameter is the parameter for Maker. ResistParameter is set for 
+    initializing the Maker.
+    Maker is fixed with kinds of resistance such as resistance, thermistor,
+    RTD.
+    each resisntance's charactoristics are set in ResisParameter such as
+    resistance value.
+    '''
+    
+    
     _cls = ResistTempFunc # targe Resist class inherit Parts class.
-    _initial_set_cls = ResistParameter # initial setting for target class.
+    _parameter_base_cls = ResistParameter # Abstract class for initial setting.
+    _parameter_set_cls = ResistParameter # initial setting for target class.
+    _temp_resist_pairs = (())
+    # pairs of resistance and temperature. ((t0, r0), (t1,r1),...)
     
     def setUp(self):
-        self.parts = self._cls(self._initial_set_cls)
+        self._resist_temp_func = self._cls(self._parameter_set_cls)
     
     def test_inherite(self):
         self.assertTrue(issubclass(self._cls, ResistTempFunc))
+        self.assertTrue(issubclass(self._parameter_set_cls, 
+                                   self._parameter_base_cls))
+    
+    def test_func_val(self):
+        func = self._resist_temp_func.get_func()
+        for t, r in self._resit_temp_pairs:
+            assert_almost_equal(r, func(t))
                
  
 """
