@@ -16,13 +16,10 @@ set as 2, add paths of parent and parent's parent folder path.
 
 module_path = Path(os.path.abspath(__file__))
 for i in range(depth_of_parents):
-    print(i)
-    print(module_path.parents[i])
     if not(str(module_path.parents[i]) in sys.path):
         sys.path.insert(0, str(module_path.parents[i]))
 
 import src
-print(os.path)
 
 '''
 This is needed when test module import files in the "src" folder placed parent

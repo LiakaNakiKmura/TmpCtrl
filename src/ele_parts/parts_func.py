@@ -11,9 +11,8 @@ Created on Sat Mar 28 21:09:39 2020
 import numpy as np
 
 # Original module  
+from context import src  # path setting
 from src.interface.intfc_com import (Parts)
-# comment
-a=0
 
 class NTC(Parts): 
     '''

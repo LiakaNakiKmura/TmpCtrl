@@ -24,3 +24,16 @@ class Parts(metaclass = abc.ABCMeta):
     @abc.abstractmethod
     def get_parameter_name(self):
         pass
+
+class ResistTempFunc(metaclass = abc.ABCMeta):
+    @abc.abstractmethod
+    def get_func(self):
+        pass
+
+class ResistParameter(metaclass = abc.ABCMeta):
+    _name = ''
+    # Over write "_name" string in inherited classes.
+    
+    @property
+    def name(self):
+        return self._name

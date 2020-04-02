@@ -16,13 +16,19 @@ from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
 
 # target
-from src.interface.intfc_com import (Parts)
+from src.interface.intfc_com import (Parts, ResistTempFunc, ResistParameter)
 from src.ele_parts.parts_func import (NTC, PTC)
 
 @add_msg
 class TestPartsInterFace(TestForMethodExist, unittest.TestCase):
     _class_method_pairs=((Parts,('get_value','set_parameter',
                                  'get_parameter_name')),
+                         )
+    
+class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
+    _class_method_pairs=((ResistTempFunc,('get_func')),
+                         )
+    _class_attr_pairs = ((ResistParameter,('name')),
                          )
 
 
@@ -47,7 +53,23 @@ class ResistTestMethods():
         for paradict, val in self._paradict_val_pairs:
             self.parts.set_parameter(**paradict)
             assert_almost_equal(val, self.parts.get_value())
-            
+ 
+
+class ResistTempFuncTestMethods():
+    _cls = ResistTempFunc # targe Resist class inherit Parts class.
+    _initial_set_cls = ResistParameter # initial setting for target class.
+    
+    def setUp(self):
+        self.parts = self._cls(self._initial_set_cls)
+    
+    def test_inherite(self):
+        self.assertTrue(issubclass(self._cls, ResistTempFunc))
+               
+ 
+"""
+class TestRTD(unittest.TestCase): pass
+    # 5000ppm/degC, 3000Ohm
+"""
 
 @add_msg
 class TestNTC(ResistTestMethods, unittest.TestCase):
@@ -61,6 +83,7 @@ class TestNTC(ResistTestMethods, unittest.TestCase):
     _paradict_val_pairs = (({'temeperature_degC':-30},216729.001660428 ),
                            ({'temeperature_degC':25},10000 ),
                            ({'temeperature_degC':80},1203.301326499)
+
                            )
 
 @add_msg
