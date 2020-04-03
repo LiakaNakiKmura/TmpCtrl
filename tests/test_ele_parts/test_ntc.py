@@ -15,10 +15,12 @@ from numpy.testing import assert_almost_equal
 from context import src  # path setting
 from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
-from test_parts import (ResistTempFuncTestMethods)
+import sys 
+print(sys.path)
+from test_ele_parts.test_parts import (ResistTempFuncTestMethods)
 
 # target
-from src.interface.intfc_com import (ResistTempFunc, ResistParameter)
+from src.interface.intfc_com import (ResistParameter)
 from src.ele_parts.ntc import (NTC_Parameter, NTCFuncClass, 
                                NTC_Sample1, NTC_Sample2)
 
