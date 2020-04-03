@@ -13,7 +13,7 @@ import abc
 from context import src  # path setting
 from src.interface.intfc_com import (ResistTempFunc, ResistParameter)
 
-class NormResistParameter(ResistParameter): 
+class FixResistParameter(ResistParameter): 
     _R = None
     
     @property
@@ -22,6 +22,6 @@ class NormResistParameter(ResistParameter):
 
 class ResistFuncClass:pass
 
-class R10Ohm(NormResistParameter):
+class R10Ohm(FixResistParameter):
     _name = '10Ohm'
     _R = 10

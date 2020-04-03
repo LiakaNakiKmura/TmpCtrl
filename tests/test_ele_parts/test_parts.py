@@ -65,7 +65,6 @@ class ResistTempFuncTestMethods():
     resistance value.
     '''
     
-    
     _cls = ResistTempFunc # targe Resist class inherit Parts class.
     _parameter_base_cls = ResistParameter # Abstract class for initial setting.
     _parameter_set_cls = ResistParameter # initial setting for target class.
@@ -85,7 +84,37 @@ class ResistTempFuncTestMethods():
         for t, r in self._resit_temp_pairs:
             assert_almost_equal(r, func(t))
                
- 
+class Resist_Parameter_Test():
+    '''
+    Test for concrete ResistParameter class.
+    Each class contains the concrete some values and name.
+    Each class inherate each ResistParameter that is for each kinds resisntance.
+    '''
+    _each_resist_prameter_cls = None # ResitPrameter class that is blongs to
+    # concrete ResitaFunc
+    
+    _target_cls = ResistParameter # targe Resist class inherit Parts class.
+    _name_value_pairs = {'name': '',
+                         'val_name': 0} # value name and value pairs.
+    
+    def setUp(self):
+        self.pararameter = self._target_cls()
+    
+    def test_inherite(self):
+        self.assertTrue(issubclass(self._target_cls, ResistParameter))
+        self.assertTrue(issubclass(self._target_cls, 
+                                   self._each_resist_prameter_cls))
+    
+    def test_value_name_exist(self):
+        for k in self._name_value_pairs.keys():
+            self.assertTrue(hasattr(self._target_cls, k))
+    
+    def test_parameter_values(self):
+        for n, v in self._name_value_pairs.items():
+            self.assertEqual(getattr(self.pararameter, n), v)
+    
+
+
 """
 class TestRTD(unittest.TestCase): pass
     # 5000ppm/degC, 3000Ohm

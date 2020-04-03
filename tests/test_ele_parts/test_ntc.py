@@ -15,18 +15,13 @@ from numpy.testing import assert_almost_equal
 from context import src  # path setting
 from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
-from test_ele_parts.test_parts import (ResistTempFuncTestMethods)
+from test_ele_parts.test_parts import (ResistTempFuncTestMethods,
+                                       Resist_Parameter_Test)
 
 # target
 from src.interface.intfc_com import (ResistParameter)
 from src.ele_parts.ntc import (NTC_Parameter, NTCFuncClass, 
                                NTC_Sample1, NTC_Sample2)
-
-@add_msg
-class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
-    _class_attr_pairs = ((NTC_Parameter,('T0', 'R0', 'B')),
-                         )
-
 
 @add_msg
 class TestNTC_func(ResistTempFuncTestMethods, unittest.TestCase):
@@ -37,49 +32,33 @@ class TestNTC_func(ResistTempFuncTestMethods, unittest.TestCase):
                          (25, 10000),
                          (80, 1203.301326499))
 
-class NTC_Par_Test():
-    '''
-    Test for concrete NTC Parameter class.
-    Each class contains the concrete T0, R0, B value and name.
-    Each class inherate NTC_Parameter.
-    '''
-    _cls = NTC_Parameter # targe Resist class inherit Parts class.
-    _name = ""
-    _T0 = 25
-    _R0 = 100000
-    _B = 0
-    
-    def setUp(self):
-        self.par = self._cls()
-    
-    def test_inherite(self):
-        self.assertTrue(issubclass(self._cls, ResistParameter))
-        self.assertTrue(issubclass(self._cls, NTC_Parameter))
-    
-    def test_parameters(self):
-        for p, v in ((self.par.name, self._name),
-                     (self.par.T0, self._T0),
-                     (self.par.R0, self._R0),
-                     (self.par.B, self._B)
-                     ):
-            self.assertEqual(p, v)
-    
+@add_msg
+class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
+    _class_attr_pairs = ((NTC_Parameter,('T0', 'R0', 'B')),
+                         )
+
+class NTC_Par_Test2(Resist_Parameter_Test):
+    _each_resist_prameter_cls = NTC_Parameter
+    _name_value_pairs = {'name': '',
+                         'T0': 0,
+                         'R0': 1000,
+                         'B': 0} # value name and value pairs.    
 
 @add_msg
-class TestNTC_Sample1(NTC_Par_Test, unittest.TestCase):
-    _cls = NTC_Sample1 # targe Resist class inherit Parts class.
-    _name = "NTC Sample1"
-    _T0 = 25
-    _R0 = 10000
-    _B = 4050
+class TestNTC_Sample1_2(NTC_Par_Test2, unittest.TestCase):
+    _target_cls = NTC_Sample1
+    _name_value_pairs = {'name': 'NTC Sample1',
+                         'T0': 25,
+                         'R0': 10000,
+                         'B': 4050} # value name and value pairs.
 
 @add_msg
-class TestNTC_Sample2(NTC_Par_Test, unittest.TestCase):
-    _cls = NTC_Sample2 # targe Resist class inherit Parts class.
-    _name = "NTC Sample2"
-    _T0 = 25
-    _R0 = 20000
-    _B = 5000
+class TestNTC_Sample2_2(NTC_Par_Test2, unittest.TestCase):
+    _target_cls = NTC_Sample2
+    _name_value_pairs = {'name': 'NTC Sample2',
+                         'T0': 25,
+                         'R0': 20000,
+                         'B': 5000} # value name and value pairs.
 
 
 if __name__=='__main__':
