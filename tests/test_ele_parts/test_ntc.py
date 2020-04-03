@@ -15,8 +15,6 @@ from numpy.testing import assert_almost_equal
 from context import src  # path setting
 from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
-import sys 
-print(sys.path)
 from test_ele_parts.test_parts import (ResistTempFuncTestMethods)
 
 # target
@@ -40,6 +38,11 @@ class TestNTC_func(ResistTempFuncTestMethods, unittest.TestCase):
                          (80, 1203.301326499))
 
 class NTC_Par_Test():
+    '''
+    Test for concrete NTC Parameter class.
+    Each class contains the concrete T0, R0, B value and name.
+    Each class inherate NTC_Parameter.
+    '''
     _cls = NTC_Parameter # targe Resist class inherit Parts class.
     _name = ""
     _T0 = 25

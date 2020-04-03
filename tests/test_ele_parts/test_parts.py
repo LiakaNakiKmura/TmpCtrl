@@ -24,9 +24,7 @@ class TestPartsInterFace(TestForMethodExist, unittest.TestCase):
     _class_method_pairs=((Parts,('get_value','set_parameter',
                                  'get_parameter_name')),
                          )
-    
-
-
+# ResitTestMethod will be deleted.
 class ResistTestMethods():
     _cls = Parts # targe Resist class inherit Parts class.
     _parameter_names = ('',) # collect parameter names by get_parameter_names.
