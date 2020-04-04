@@ -14,7 +14,6 @@ import numpy as np
 from context import src  # path setting
 from src.interface.intfc_com import (ResistTempFunc, ResistParameter,
                                      ResistFuncMaker)
-
 from src.ele_parts.common_classes import (ResistFuncMaker_Com)
 
 class NTCFuncClass(ResistTempFunc):
