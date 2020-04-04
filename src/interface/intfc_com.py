@@ -43,3 +43,20 @@ class ResistParameter(metaclass = abc.ABCMeta):
     @property
     def name(self):
         return self._name
+
+class ResistFuncMaker(metaclass = abc.ABCMeta):
+    _para_cls_list =()
+    _func_cls = ResistTempFunc
+    
+    def get_kind_list(self):
+        self._make_list()
+        return self._name_list.keys()
+        
+    def get_resist(self, name):
+        return self._func_cls(self._name_list[name])
+    
+    def _make_list(self):
+        self._name_list = {}
+        for Para in self._para_cls_list:
+            p = Para()
+            self._name_list[p.name] = Para

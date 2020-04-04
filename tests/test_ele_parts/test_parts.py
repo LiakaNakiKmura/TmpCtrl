@@ -16,11 +16,13 @@ from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
 
 # target
-from src.interface.intfc_com import (ResistTempFunc, ResistParameter)
+from src.interface.intfc_com import (ResistTempFunc, ResistParameter,
+                                     ResistFuncMaker)
 
 @add_msg 
 class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
     _class_method_pairs=((ResistTempFunc,('get_func')),
+                         (ResistFuncMaker,('get_kind_list', 'get_resist'))
                          )
     _class_attr_pairs = ((ResistParameter,('name')),
                          )
@@ -87,6 +89,20 @@ class Resist_Parameter_Test():
     
 class ResistList():pass
 class TempRangeClass():pass
+
+class ResistFuncMakerTest():
+    _Maker = ResistFuncMaker
+    def setUp(self):
+        self.maker = self._Maker()
+    
+    def test_inherite(self):
+        self.assertTrue(issubclass(self._Maker, ResistFuncMaker))
+    
+    def test_get_data(self):
+        for name in self.maker.get_kind_list():
+            resit = self.maker.get_resist(name)
+            self.assertTrue(isinstance(resit, ResistTempFunc))
+    
 
 """
 class TestRTD(unittest.TestCase): pass

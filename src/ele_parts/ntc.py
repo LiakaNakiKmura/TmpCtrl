@@ -13,7 +13,8 @@ import numpy as np
 
 # Original module  
 from context import src  # path setting
-from src.interface.intfc_com import (ResistTempFunc, ResistParameter)
+from src.interface.intfc_com import (ResistTempFunc, ResistParameter,
+                                     ResistFuncMaker)
 
 class NTCFuncClass(ResistTempFunc):
     def __init__(self, Parameter):
@@ -30,9 +31,6 @@ class NTCFuncClass(ResistTempFunc):
             T1 = t1_degC + 273
             return R0*np.exp(B*(1/T1- 1/T0))
         return func
-    
-    
-
 
 class NTC_Parameter(ResistParameter): 
     _T0 = 25
@@ -62,3 +60,7 @@ class NTC_Sample2(NTC_Parameter):
     _T0 = 25
     _R0 = 20000
     _B = 5000
+
+class NTC_FuncMaker(ResistFuncMaker):
+    _kindlist = (NTC_Sample1, NTC_Sample2)
+    _func_cls = NTCFuncClass
