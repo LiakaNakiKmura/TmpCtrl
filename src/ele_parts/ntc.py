@@ -6,7 +6,6 @@ Created on Thu Apr  2 23:58:03 2020
 """
 
 # Standard module
-import abc
 
 # 3rd party's module
 import numpy as np
@@ -15,6 +14,8 @@ import numpy as np
 from context import src  # path setting
 from src.interface.intfc_com import (ResistTempFunc, ResistParameter,
                                      ResistFuncMaker)
+
+from src.ele_parts.common_classes import (ResistFuncMaker_Com)
 
 class NTCFuncClass(ResistTempFunc):
     def __init__(self, Parameter):
@@ -61,6 +62,6 @@ class NTC_Sample2(NTC_Parameter):
     _R0 = 20000
     _B = 5000
 
-class NTC_FuncMaker(ResistFuncMaker):
+class NTC_FuncMaker(ResistFuncMaker_Com):
     _kindlist = (NTC_Sample1, NTC_Sample2)
     _func_cls = NTCFuncClass
