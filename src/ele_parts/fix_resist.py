@@ -20,7 +20,12 @@ class FixResistParameter(ResistParameter):
     def R(self):
         return self._R
 
-class ResistFuncClass:pass
+class FixResistFuncClass(ResistTempFunc):
+    def __init__(self, Parameter):
+        self.para = Parameter()
+        
+    def get_func(self):
+        return lambda x: self.para.R
 
 class R10Ohm(FixResistParameter):
     _name = '10Ohm'

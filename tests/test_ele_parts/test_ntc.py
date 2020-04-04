@@ -45,7 +45,7 @@ class NTC_Par_Test2(Resist_Parameter_Test):
                          'B': 0} # value name and value pairs.    
 
 @add_msg
-class TestNTC_Sample1_2(NTC_Par_Test2, unittest.TestCase):
+class TestNTC_Sample1(NTC_Par_Test2, unittest.TestCase):
     _target_cls = NTC_Sample1
     _name_value_pairs = {'name': 'NTC Sample1',
                          'T0': 25,
@@ -53,7 +53,7 @@ class TestNTC_Sample1_2(NTC_Par_Test2, unittest.TestCase):
                          'B': 4050} # value name and value pairs.
 
 @add_msg
-class TestNTC_Sample2_2(NTC_Par_Test2, unittest.TestCase):
+class TestNTC_Sample2(NTC_Par_Test2, unittest.TestCase):
     _target_cls = NTC_Sample2
     _name_value_pairs = {'name': 'NTC Sample2',
                          'T0': 25,

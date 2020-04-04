@@ -46,7 +46,8 @@ class ResistTestMethods():
         for paradict, val in self._paradict_val_pairs:
             self.parts.set_parameter(**paradict)
             assert_almost_equal(val, self.parts.get_value())
- 
+
+@add_msg 
 class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
     _class_method_pairs=((ResistTempFunc,('get_func')),
                          )
