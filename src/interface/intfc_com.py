@@ -12,19 +12,6 @@ import abc
 
 # Original module  
 
-class Parts(metaclass = abc.ABCMeta):
-    @abc.abstractmethod
-    def get_value(self):
-        pass
-
-    @abc.abstractmethod
-    def set_parameter(self):
-        pass
-
-    @abc.abstractmethod
-    def get_parameter_name(self):
-        pass
-
 class ResistTempFunc(metaclass = abc.ABCMeta):
     '''
     ResistTempFunc is the Maker of function for calucurate resistance at 

@@ -21,6 +21,9 @@ class FixResistParameter(ResistParameter):
         return self._R
 
 class FixResistFuncClass(ResistTempFunc):
+    '''
+    Fixed Resistance. The resitance of this class will not be changed. 
+    '''
     def __init__(self, Parameter):
         self.para = Parameter()
         
