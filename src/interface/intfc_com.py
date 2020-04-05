@@ -46,7 +46,11 @@ class ResistParameter(metaclass = abc.ABCMeta):
 
 class ResistFuncMaker(metaclass = abc.ABCMeta):
     '''
-    Factory class to Make resistnance
+    Factory class to Make resistnance.
+    This class generate resistance func class that inherate "ResistTempFunc".
+    The class generated can be chosen by selecting with name of value of 
+    resistance.
+    The names can be fotten from "get_kind_list."
     '''
     
     _name = None

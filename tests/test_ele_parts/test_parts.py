@@ -90,7 +90,9 @@ class Resist_Parameter_Test():
             self.assertEqual(getattr(self.parameter, n), v)
             
     def test_overwrite_name(self):
+        # Name is overwritten as strings.
         self.assertNotEqual(self.parameter.name, None)
+        self.assertEqual(type(self.maker.name), str)
     
 
 class ResistFuncMakerTest():
@@ -107,14 +109,13 @@ class ResistFuncMakerTest():
             self.assertTrue(isinstance(resit, ResistTempFunc))
             
     def test_overwrite_name(self):
+        # Name is overwritten as strings.
         self.assertNotEqual(self.maker.name, None)
+        self.assertEqual(type(self.maker.name), str)
     
     
 class ResistTempList():pass
-class TempRangeClass():
-    def test_get_(self):
-        pass
-    
+
 
 """
 class TestRTD(unittest.TestCase): pass
