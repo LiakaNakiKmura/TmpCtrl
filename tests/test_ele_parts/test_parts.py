@@ -8,6 +8,8 @@ import unittest
 
 # 3rd party's module
 from numpy.testing import assert_almost_equal
+from numpy.testing import assert_array_almost_equal
+from unittest.mock import patch
 
 # Original module  
 from context import src  # path setting
@@ -18,11 +20,17 @@ from testing_utility.unittest_util import cls_startstop_msg as add_msg
 # target
 from src.interface.intfc_com import (ResistTempFunc, ResistParameter,
                                      ResistFuncMaker)
+from src.ele_parts.common_classes import (ResistTempListMaker,)
+
+#utility
+from src.com.com_parameter import TempRange
 
 @add_msg 
 class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
     _class_method_pairs=((ResistTempFunc,('get_func')),
-                         (ResistFuncMaker,('get_kind_list', 'get_resist'))
+                         (ResistFuncMaker,('get_kind_list', 'get_resist')),
+                         (ResistTempListMaker,('set_temp', 'set_resist_func',
+                                               'get_resist_list'))
                          )
     _class_attr_pairs = ((ResistParameter,('name',)),
                          (ResistFuncMaker,('name',))
@@ -112,9 +120,40 @@ class ResistFuncMakerTest():
         # Name is overwritten as strings.
         self.assertNotEqual(self.maker.name, None)
         self.assertEqual(type(self.maker.name), str)
+
+
+# Mock classes for ResistTempListMaker
+class MockResistParameter(ResistParameter):
+    _name = 'MockParameter'
+
+class MockResistTempFunc(ResistTempFunc):
+    def get_func(self):
+        return lambda T: 2000*T +3000
+
+class TestResistTempListMaker(unittest.TestCase):
+    def setUp(self):
+        self.r_t = ResistTempListMaker()
+        self.temp = TempRange()
+        self.mock_func_inst = MockResistTempFunc(MockResistParameter)
     
-    
-class ResistTempList():pass
+    def test_get_templist(self):
+        self.r_t.set_resist_func(self.mock_func_inst)
+        self.r_t.set_temp(self.temp)
+        
+        #Temp setting
+        _start = -40
+        _stop = 60
+        _step = 5
+        self.temp.set_range(_start, _stop, _step)
+        temp_rng = self.temp.get_list()
+        # Change temp_rng setting after instance was passed to ResistTempList-
+        # Maker
+        
+        func = self.mock_func_inst.get_func()
+        resist_list = func(temp_rng)
+        
+        assert_array_almost_equal(resist_list, self.r_t.get_resist_list())
+        
 
 
 """

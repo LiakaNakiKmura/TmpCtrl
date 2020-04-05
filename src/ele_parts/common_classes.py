@@ -29,3 +29,15 @@ class ResistFuncMaker_Com(ResistFuncMaker):
         for Para in self._para_cls_list:
             p = Para()
             self._name_list[p.name] = Para
+
+class ResistTempListMaker():
+    def set_temp(self, temp_range_instance):
+        self._temp = temp_range_instance
+    
+    def set_resist_func(self, resist_temp_func_instance):
+        self._func = resist_temp_func_instance
+    
+    def get_resist_list(self):
+        temp_range = self._temp.get_list()
+        func = self._func.get_func()
+        return func(temp_range)

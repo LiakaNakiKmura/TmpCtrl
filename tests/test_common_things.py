@@ -23,7 +23,7 @@ from testing_utility.unittest_util import cls_startstop_msg as add_msg
 from src.com.com_parameter import (TempRange)
 
 @add_msg 
-class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
+class TestTempeRangeInterface(TestForMethodExist, unittest.TestCase):
     _class_method_pairs=((TempRange,('set_range', 'get_list')),
                          )
 
@@ -37,6 +37,14 @@ class TempRangeClass(unittest.TestCase):
         _step = 10
         self.tr.set_range(_min, _max, _step)
         _correct_list = np.arange(_min, _max, _step)
+        assert_array_equal(_correct_list, self.tr.get_list())
+        
+    def test_get_range2(self):
+        _start = -5
+        _stop = 5
+        _step = 1
+        self.tr.set_range(_start, _stop, _step)
+        _correct_list = np.array([-5,-4,-3,-2,-1,0,1,2,3,4])
         assert_array_equal(_correct_list, self.tr.get_list())
 
 if __name__=='__main__':

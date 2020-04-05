@@ -18,7 +18,6 @@ class TempRange():
         self._start = start
         self._stop = stop
         self._step = step
-        pass
     
     def get_list(self):
         return np.arange(self._start, self._stop, self._step)
