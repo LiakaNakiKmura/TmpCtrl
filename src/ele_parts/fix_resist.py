@@ -38,3 +38,4 @@ class R10Ohm(FixResistParameter):
 class FixResistFuncMaker(ResistFuncMaker_Com):
     _kindlist = (R10Ohm)
     _func_cls = FixResistFuncClass
+    _name = 'Resistance (No temperature difference.)'

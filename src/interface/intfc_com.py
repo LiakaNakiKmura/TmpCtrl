@@ -37,7 +37,7 @@ class ResistParameter(metaclass = abc.ABCMeta):
     The inherated class has abstract parameters to constract ResistTempFunc.
     Concrete class inferate the class. Concrete value set on there.
     '''
-    _name = ''
+    _name = None
     # Over write "_name" string in inherited classes.
     
     @property
@@ -45,6 +45,16 @@ class ResistParameter(metaclass = abc.ABCMeta):
         return self._name
 
 class ResistFuncMaker(metaclass = abc.ABCMeta):
+    '''
+    Factory class to Make resistnance
+    '''
+    
+    _name = None
+    # Over write "_name" string in inherited classes.
+    
+    @property
+    def name(self):
+        return self._name
 
     @abc.abstractmethod
     def get_kind_list(self):

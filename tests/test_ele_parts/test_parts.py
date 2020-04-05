@@ -24,7 +24,8 @@ class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
     _class_method_pairs=((ResistTempFunc,('get_func')),
                          (ResistFuncMaker,('get_kind_list', 'get_resist'))
                          )
-    _class_attr_pairs = ((ResistParameter,('name')),
+    _class_attr_pairs = ((ResistParameter,('name',)),
+                         (ResistFuncMaker,('name',))
                          )
 
 class ResistTempFuncTestMethods():
@@ -57,6 +58,7 @@ class ResistTempFuncTestMethods():
         func = self._resist_temp_func.get_func()
         for t, r in self._resit_temp_pairs:
             assert_almost_equal(r, func(t))
+    
                
 class Resist_Parameter_Test():
     '''
@@ -72,7 +74,7 @@ class Resist_Parameter_Test():
                          'val_name': 0} # value name and value pairs.
     
     def setUp(self):
-        self.pararameter = self._target_cls()
+        self.parameter = self._target_cls()
     
     def test_inherite(self):
         self.assertTrue(issubclass(self._target_cls, ResistParameter))
@@ -85,10 +87,11 @@ class Resist_Parameter_Test():
     
     def test_parameter_values(self):
         for n, v in self._name_value_pairs.items():
-            self.assertEqual(getattr(self.pararameter, n), v)
+            self.assertEqual(getattr(self.parameter, n), v)
+            
+    def test_overwrite_name(self):
+        self.assertNotEqual(self.parameter.name, None)
     
-class ResistList():pass
-class TempRangeClass():pass
 
 class ResistFuncMakerTest():
     _Maker = ResistFuncMaker
@@ -102,6 +105,15 @@ class ResistFuncMakerTest():
         for name in self.maker.get_kind_list():
             resit = self.maker.get_resist(name)
             self.assertTrue(isinstance(resit, ResistTempFunc))
+            
+    def test_overwrite_name(self):
+        self.assertNotEqual(self.maker.name, None)
+    
+    
+class ResistTempList():pass
+class TempRangeClass():
+    def test_get_(self):
+        pass
     
 
 """
