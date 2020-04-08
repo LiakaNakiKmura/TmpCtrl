@@ -11,9 +11,9 @@ Created on Sat Apr  4 22:21:44 2020
 
 # Original module  
 from context import src  # path setting
-from src.interface.intfc_com import (ResistFuncMaker, ResistTempFunc)
+from src.interface.intfc_com import (ResistFuncFactory, ResistTempFunc)
 
-class ResistFuncMaker_Com(ResistFuncMaker):
+class ResistFuncFactory_Com(ResistFuncFactory):
     _para_cls_list =()
     _func_cls = ResistTempFunc
     

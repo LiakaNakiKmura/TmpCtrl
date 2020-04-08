@@ -13,8 +13,8 @@ import numpy as np
 # Original module  
 from context import src  # path setting
 from src.interface.intfc_com import (ResistTempFunc, ResistParameter,
-                                     ResistFuncMaker)
-from src.ele_parts.common_classes import (ResistFuncMaker_Com)
+                                     ResistFuncFactory)
+from src.ele_parts.common_classes import (ResistFuncFactory_Com)
 
 class NTCFuncClass(ResistTempFunc):
     def __init__(self, Parameter):
@@ -61,7 +61,7 @@ class NTC_Sample2(NTC_Parameter):
     _R0 = 20000
     _B = 5000
 
-class NTC_FuncFactory(ResistFuncMaker_Com):
+class NTC_FuncFactory(ResistFuncFactory_Com):
     _kindlist = (NTC_Sample1, NTC_Sample2)
     _func_cls = NTCFuncClass
     _name = 'NTC thermistor'

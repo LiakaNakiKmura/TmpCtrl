@@ -17,12 +17,12 @@ from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
 from test_ele_parts.test_parts import (ResistTempFuncTestMethods,
                                        Resist_Parameter_Test,
-                                       ResistFuncMakerTest)
+                                       ResistFuncFactoryTest)
 
 # target
 from src.interface.intfc_com import (ResistParameter)
 from src.ele_parts.fix_resist import (FixResistParameter, FixResistFuncClass, 
-                               R10Ohm, FixResistFuncMaker)
+                               R10Ohm, FixResistFuncFactory)
 
 @add_msg
 class TestFixResist_func(ResistTempFuncTestMethods, unittest.TestCase):
@@ -50,8 +50,8 @@ class TestR10Ohm(FixResist_par_Test, unittest.TestCase):
                          'R': 10} # value name and value pairs.
 
 @add_msg
-class TestFixResist_FuncFactory(ResistFuncMakerTest, unittest.TestCase):
-    _Maker = FixResistFuncMaker
+class TestFixResist_FuncFactory(ResistFuncFactoryTest, unittest.TestCase):
+    _Maker = FixResistFuncFactory
 
 if __name__=='__main__':
     unittest.main() 

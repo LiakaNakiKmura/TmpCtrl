@@ -19,7 +19,7 @@ from testing_utility.unittest_util import cls_startstop_msg as add_msg
 
 # target
 from src.interface.intfc_com import (ResistTempFunc, ResistParameter,
-                                     ResistFuncMaker)#,ResistMaker)
+                                     ResistFuncFactory)#,ResistMaker)
 from src.ele_parts.common_classes import (ResistTempListMaker,)
 
 #utility
@@ -28,12 +28,12 @@ from src.com.com_parameter import TempRange
 @add_msg 
 class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
     _class_method_pairs=((ResistTempFunc,('get_func')),
-                         (ResistFuncMaker,('get_kind_list', 'get_resist')),
+                         (ResistFuncFactory,('get_kind_list', 'get_resist')),
                          (ResistTempListMaker,('set_temp', 'set_resist_func',
                                                'get_resist_list'))
                          )
     _class_attr_pairs = ((ResistParameter,('name',)),
-                         (ResistFuncMaker,('name',))
+                         (ResistFuncFactory,('name',))
                          )
 
 class ResistTempFuncTestMethods():
@@ -103,13 +103,13 @@ class Resist_Parameter_Test():
         self.assertEqual(type(self.parameter.name), str)
     
 
-class ResistFuncMakerTest():
-    _Maker = ResistFuncMaker
+class ResistFuncFactoryTest():
+    _Maker = ResistFuncFactory
     def setUp(self):
         self.maker = self._Maker()
     
     def test_inherite(self):
-        self.assertTrue(issubclass(self._Maker, ResistFuncMaker))
+        self.assertTrue(issubclass(self._Maker, ResistFuncFactory))
     
     def test_get_data(self):
         for name in self.maker.get_kind_list():

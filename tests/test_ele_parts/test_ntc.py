@@ -17,7 +17,7 @@ from testing_utility.unittest_util import TestForMethodExist
 from testing_utility.unittest_util import cls_startstop_msg as add_msg
 from test_ele_parts.test_parts import (ResistTempFuncTestMethods,
                                        Resist_Parameter_Test,
-                                       ResistFuncMakerTest)
+                                       ResistFuncFactoryTest)
 
 # target
 from src.interface.intfc_com import (ResistParameter)
@@ -63,7 +63,7 @@ class TestNTC_Sample2(NTC_Par_Test2, unittest.TestCase):
                          'B': 5000} # value name and value pairs.
 
 @add_msg
-class TestNTC_FuncFactory(ResistFuncMakerTest, unittest.TestCase):
+class TestNTC_FuncFactory(ResistFuncFactoryTest, unittest.TestCase):
     _Maker = NTC_FuncFactory
     pass
 

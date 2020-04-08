@@ -12,7 +12,7 @@ Created on Fri Apr  3 23:23:54 2020
 # Original module  
 from context import src  # path setting
 from src.interface.intfc_com import (ResistTempFunc, ResistParameter)
-from src.ele_parts.common_classes import (ResistFuncMaker_Com)
+from src.ele_parts.common_classes import (ResistFuncFactory_Com)
 
 class FixResistParameter(ResistParameter): 
     _R = None
@@ -35,7 +35,7 @@ class R10Ohm(FixResistParameter):
     _name = '10Ohm'
     _R = 10
 
-class FixResistFuncMaker(ResistFuncMaker_Com):
+class FixResistFuncFactory(ResistFuncFactory_Com):
     _kindlist = (R10Ohm)
     _func_cls = FixResistFuncClass
     _name = 'Resistance (No temperature difference.)'

@@ -44,7 +44,7 @@ class ResistParameter(metaclass = abc.ABCMeta):
     def name(self):
         return self._name
 
-class ResistFuncMaker(metaclass = abc.ABCMeta):
+class ResistFuncFactory(metaclass = abc.ABCMeta):
     '''
     Factory class to Make resistnance.
     This class generate resistance func class that inherate "ResistTempFunc".
