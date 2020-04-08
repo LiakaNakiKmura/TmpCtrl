@@ -51,7 +51,7 @@ class TestR10Ohm(FixResist_par_Test, unittest.TestCase):
 
 @add_msg
 class TestFixResist_FuncFactory(ResistFuncFactoryTest, unittest.TestCase):
-    _Maker = FixResistFuncFactory
+    _Factory = FixResistFuncFactory
 
 if __name__=='__main__':
     unittest.main() 

@@ -64,7 +64,7 @@ class TestNTC_Sample2(NTC_Par_Test2, unittest.TestCase):
 
 @add_msg
 class TestNTC_FuncFactory(ResistFuncFactoryTest, unittest.TestCase):
-    _Maker = NTC_FuncFactory
+    _Factory = NTC_FuncFactory
     pass
 
 
