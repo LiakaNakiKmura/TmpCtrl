@@ -1,0 +1,33 @@
+@startuml
+
+abstract class IndivDataBase{
+}
+
+abstract class ResistFuncFactory{
+    +name
+    +get_kind_list
+    +get_resist
+}
+
+class TransferfuncDataBase{
+    +set_mag_deg_data(freq, mag, deg)
+}
+
+class CloseLoopDataBase{
+}
+class NoiseTransfuncPairsManager{
+    get_pair_names
+}
+
+NoiseDataBase -up-|> IndivDataBase
+TransferfuncDataBase -up-|> IndivDataBase
+CloseLoopDataBase -up-|> IndivDataBase
+NoiseTransfuncPairsManager --> NoiseDataBase
+NoiseTransfuncPairsManager --> TransferfuncDataBase
+
+IndivDataBase -ri-> PNDataBase
+
+class PNDataBase{
+}
+
+@enduml

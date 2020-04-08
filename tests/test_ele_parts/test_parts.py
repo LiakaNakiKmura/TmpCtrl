@@ -19,7 +19,7 @@ from testing_utility.unittest_util import cls_startstop_msg as add_msg
 
 # target
 from src.interface.intfc_com import (ResistTempFunc, ResistParameter,
-                                     ResistFuncMaker)
+                                     ResistFuncMaker)#,ResistMaker)
 from src.ele_parts.common_classes import (ResistTempListMaker,)
 
 #utility
@@ -100,7 +100,7 @@ class Resist_Parameter_Test():
     def test_overwrite_name(self):
         # Name is overwritten as strings.
         self.assertNotEqual(self.parameter.name, None)
-        self.assertEqual(type(self.maker.name), str)
+        self.assertEqual(type(self.parameter.name), str)
     
 
 class ResistFuncMakerTest():
@@ -153,7 +153,7 @@ class TestResistTempListMaker(unittest.TestCase):
         resist_list = func(temp_rng)
         
         assert_array_almost_equal(resist_list, self.r_t.get_resist_list())
-        
+
 
 
 """

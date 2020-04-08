@@ -67,3 +67,4 @@ class ResistFuncMaker(metaclass = abc.ABCMeta):
     @abc.abstractmethod
     def get_resist(self, name):
         pass
+

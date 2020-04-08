@@ -61,7 +61,7 @@ class NTC_Sample2(NTC_Parameter):
     _R0 = 20000
     _B = 5000
 
-class NTC_FuncMaker(ResistFuncMaker_Com):
+class NTC_FuncFactory(ResistFuncMaker_Com):
     _kindlist = (NTC_Sample1, NTC_Sample2)
     _func_cls = NTCFuncClass
     _name = 'NTC thermistor'

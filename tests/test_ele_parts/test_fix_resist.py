@@ -50,7 +50,7 @@ class TestR10Ohm(FixResist_par_Test, unittest.TestCase):
                          'R': 10} # value name and value pairs.
 
 @add_msg
-class TestNTC_FuncMaker(ResistFuncMakerTest, unittest.TestCase):
+class TestFixResist_FuncFactory(ResistFuncMakerTest, unittest.TestCase):
     _Maker = FixResistFuncMaker
 
 if __name__=='__main__':
