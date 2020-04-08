@@ -38,13 +38,12 @@ class TestResistTempFuncInterFace(TestForMethodExist, unittest.TestCase):
 
 class ResistTempFuncTestMethods():
     '''
-    Test for Maker of function for R(T)
-    ResistTempFunc is the Maker.
-    ResistParameter is the parameter for Maker. ResistParameter is set for 
-    initializing the Maker.
-    Maker is fixed with kinds of resistance such as resistance, thermistor,
-    RTD.
-    each resisntance's charactoristics are set in ResisParameter such as
+    ResistTempFunc generate R(T): Resitance temperature dependency.
+    ResistParameter is the parameter for ResistTempFunc. ResistParameter is 
+    set for initializing the ResistTempFunc.
+    ResistTempFunc has inherated classed with kinds of resistance such as 
+    resistance, thermistor, RTD.
+    Each resisntance's charactoristics are set in own ResisParameter such as
     resistance value.
     '''
     
@@ -104,12 +103,12 @@ class Resist_Parameter_Test():
     
 
 class ResistFuncFactoryTest():
-    _Maker = ResistFuncFactory
+    _Factory = ResistFuncFactory
     def setUp(self):
-        self.maker = self._Maker()
+        self.maker = self._Factory()
     
     def test_inherite(self):
-        self.assertTrue(issubclass(self._Maker, ResistFuncFactory))
+        self.assertTrue(issubclass(self._Factory, ResistFuncFactory))
     
     def test_get_data(self):
         for name in self.maker.get_kind_list():
