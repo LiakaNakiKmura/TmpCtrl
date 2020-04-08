@@ -1,33 +1,43 @@
 @startuml
 
-abstract class IndivDataBase{
-}
-
 abstract class ResistFuncFactory{
     +name
-    +get_kind_list
-    +get_resist
+    +get_kind_list()
+    +get_resist()
 }
 
-class TransferfuncDataBase{
-    +set_mag_deg_data(freq, mag, deg)
+abstract class ResistParameter{
+    +name
 }
 
-class CloseLoopDataBase{
-}
-class NoiseTransfuncPairsManager{
-    get_pair_names
+class NTC_Parameter{
+    +T0
+    +R0
+    +B0
 }
 
-NoiseDataBase -up-|> IndivDataBase
-TransferfuncDataBase -up-|> IndivDataBase
-CloseLoopDataBase -up-|> IndivDataBase
-NoiseTransfuncPairsManager --> NoiseDataBase
-NoiseTransfuncPairsManager --> TransferfuncDataBase
-
-IndivDataBase -ri-> PNDataBase
-
-class PNDataBase{
+abstract class ResistTempFunc{
+    -__init__(ResistParameter)
 }
+
+class ResitTempList{
+    +set_temp
+    +set_ResistFunc(resist_temp_func)
+    +get_resistlist()
+}
+
+Class TempRange{
+    +set_range(min,max,step)
+    +get_list()
+}
+
+NTC_Factory --|> ResistFuncFactory
+NTC_FuncClass -up-|> ResistTempFunc
+NTC_Parameter -up-|> ResistParameter 
+ResistFuncFactory -down-> ResistTempFunc
+ResistFuncFactory -down-> ResistParameter
+ResistTempFunc -> ResistParameter
+ResitTempList -> ResistTempFunc
+ResitTempList -down-> TempRange
 
 @enduml
